@@ -1,4 +1,7 @@
-# Anime4K WebGPU：站点实现分析与最小浏览器插件原型
+# Anime4K WebGPU：站点实现分析与最小浏览器插件原型（历史版本）
+
+> 这是项目迁移到 `~/Projects/Code/Anime4K-WebGPU` 之前的原型 README，保留作分析存档。
+> 文中 `outputs/anime4k-webgpu/...` 是旧路径；当前目录结构、命令和状态以根目录 [README.md](../README.md) 为准。
 
 ## 1. 站点是怎么实现的
 
