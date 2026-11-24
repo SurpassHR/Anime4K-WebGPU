@@ -38,10 +38,8 @@
       <button id="stop">关闭</button>
       <span id="status">等待启动</span>
     </div>
-    <p style="color:#7f8ba5;font-size:12px">请通过 <code>python3 -m http.server 8765</code> 后访问 <code>http://127.0.0.1:8765/</code>；<code>file://</code> 下浏览器会阻止 WebGPU 读取视频帧。如果看到 <code>WebGPU 不可用</code>，请用 Chrome 113+ / Edge 113+，并确认 <code>chrome://gpu</code> 中 WebGPU 为 enabled。</p>
+    <p style="color:#7f8ba5;font-size:12px">请在仓库根目录运行 <code>npm run dev</code> 后访问 <code>http://127.0.0.1:8765/demo/</code>；<code>file://</code> 下浏览器会阻止 WebGPU 读取视频帧。如果看到 <code>WebGPU 不可用</code>，请用 Chrome 113+ / Edge 113+，并确认 <code>chrome://gpu</code> 中 WebGPU 为 enabled。</p>
   </main>
-  <script src="anime4k-data.js"></script>
-  <script src="anime4k-webgpu.js"></script>
-  <script src="demo.js"></script>
+  <script type="module" src="../src/demo/main.ts"></script>
 </body>
 </html>

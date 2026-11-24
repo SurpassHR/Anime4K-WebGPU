@@ -2,7 +2,7 @@
 """Extract Anime4K Restore_CNN_S + Upscale_CNN_x2_S weights to JSON.
 
 The input GLSL files are from bloc97/Anime4K (MIT). The output layout is
-optimized for the generic WebGPU convolution shader in extension/anime4k-webgpu.js:
+optimized for the generic WebGPU convolution shader in src/core/anime4k-webgpu.ts:
 for each tap, four vec4s (one per output channel), each vec4 holding the four
 input-channel weights.
 """

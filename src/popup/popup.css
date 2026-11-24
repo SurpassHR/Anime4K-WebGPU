@@ -1,0 +1,87 @@
+html,
+body,
+#root {
+  width: 380px;
+  min-height: 360px;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--studio-bg);
+  color: var(--studio-text);
+}
+
+.popup-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100%;
+  padding: 14px 14px 18px;
+}
+
+.popup-page h1 {
+  margin: 4px 0 2px;
+  font-size: 24px;
+}
+
+.popup-page header p {
+  font-size: 11px;
+}
+
+.popup-panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.popup-stack {
+  gap: 12px;
+}
+
+.popup-segmented > [role="group"] {
+  display: flex;
+  width: 100%;
+}
+
+.popup-segmented > [role="group"] > button {
+  flex: 1;
+}
+
+.popup-full-button {
+  width: 100%;
+}
+
+.popup-muted {
+  margin: 0;
+  color: var(--studio-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.popup-error {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--studio-danger) 28%, transparent);
+  border-radius: var(--studio-radius-sm);
+  background: var(--studio-danger-soft);
+  color: var(--studio-danger);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.popup-error svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.popup-hint {
+  margin: 0;
+  color: var(--studio-faint);
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+}

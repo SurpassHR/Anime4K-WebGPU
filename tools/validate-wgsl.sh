@@ -11,8 +11,7 @@ if [ -z "$NAGA" ]; then
   exit 1
 fi
 
-python3 tools/extract_wgsl.py --renderer extension/anime4k-webgpu.js --out build/wgsl
-for file in build/wgsl/*.wgsl; do
+for file in src/core/shaders/*.wgsl; do
   printf '%-24s ' "$(basename "$file")"
   "$NAGA" "$file"
 done

@@ -24,7 +24,7 @@
   <header>
     <h1>Anime4K WebGPU Color Test</h1>
     <p>SMPTE 彩条 · 2× anime4k · 逐点比较源视频与输出。理想情况：每个通道误差 ≤ 2/255。</p>
-    <p><strong>必须通过 HTTP 打开：</strong>在 demo 目录运行 <code>python3 -m http.server 8765</code>，然后访问 <code>http://127.0.0.1:8765/color-test.html</code>。直接双击 <code>file://</code> 打开时，浏览器会因 canvas taint 禁止 <code>getImageData</code>。</p>
+    <p><strong>必须通过 HTTP 打开：</strong>在仓库根目录运行 <code>npm run dev</code>，然后访问 <code>http://127.0.0.1:8765/demo/color-test.html</code>。直接双击 <code>file://</code> 打开时，浏览器会因 canvas taint 禁止 <code>getImageData</code>。</p>
   </header>
   <main>
     <div class="wrap"><video id="v" src="color.mp4" muted loop playsinline></video><canvas id="c"></canvas></div>
@@ -33,8 +33,6 @@
     <p>如果输出平均亮度明显高于源视频，通常是 sRGB/线性空间被重复转换，或 `importExternalTexture` 的色彩空间没有处理对。</p>
     <pre id="log">等待运行…</pre>
   </main>
-  <script src="anime4k-data.js"></script>
-  <script src="anime4k-webgpu.js"></script>
-  <script src="color-test.js"></script>
+  <script type="module" src="../src/demo/color-test.ts"></script>
 </body>
 </html>

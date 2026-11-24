@@ -59,4 +59,4 @@ Our defaults:
 2. If both stutter, the bottleneck is upload/overlay/page, not convolution.
 3. Run `demo/color-test.html`; compare flat patches.
 4. Toggle `Clamp`; if only highlights change, it is model/highlight behavior.
-5. Check HUD `format`; `bgra8unorm` is expected for SDR. Avoid forcing `-srgb`.
+5. Check `format` in the toolbar popup; `bgra8unorm` is expected for SDR. Avoid forcing `-srgb`.

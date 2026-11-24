@@ -3,12 +3,16 @@
   "name": "Anime4K WebGPU",
   "version": "0.1.0",
   "description": "Real-time Anime4K video restoration/upscaling with WebGPU.",
-  "permissions": ["storage"],
+  "permissions": ["storage", "webNavigation"],
   "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Anime4K WebGPU",
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["anime4k-data.js", "anime4k-webgpu.js", "content.js"],
+      "js": ["content.js"],
       "run_at": "document_idle",
       "all_frames": true
     }

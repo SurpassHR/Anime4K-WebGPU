@@ -31,14 +31,27 @@ The page now detects `file://` and prints the exact command instead of throwing.
 - Check `video.readyState >= 2` and `video.videoWidth > 0`.
 - Try playing the video; a paused, freshly-seeked frame can be black on the first render.
 - For cross-origin video, the browser may block frame readback.
-- Check HUD `format` and `mode`.
+- Check `format` and `mode` in the toolbar popup's LIVE panel.
+
+## Popup says no video
+
+- Reload the page after installing or reloading the unpacked extension; content
+  scripts are injected at page load.
+- The popup enumerates all frames and picks the frame with a visible video. If a
+  site replaces its player without a page reload, click `重新扫描`.
 
 ## Stutter
 
 - Switch to `1x 修复`.
-- Lower `fps` in `extension/content.js` (default 30).
+- Lower `fps` in `src/extension/content.ts` (default 30).
 - Close other GPU-heavy tabs.
 - If 1× still stutters, profile upload/overlay; the CNN is not the only possible bottleneck.
+
+## 8× stops immediately
+
+The popup reports that the output exceeds `maxTextureDimension2D`. Many GPUs
+cap this at 8192px, so `1280×720 × 8` cannot be allocated. Lower the factor or
+use a smaller source video.
 
 ## Overexposure / washed-out colors
 

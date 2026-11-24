@@ -1,22 +1,5 @@
 <!doctype html><meta charset="utf-8"><body style="background:#111;color:#fff">
 <video id="v" src="../demo/sample.mp4" muted playsinline style="width:640px;height:360px;display:block"></video>
 <canvas id="c"></canvas>
-<script src="../demo/anime4k-data.js"></script>
-<script src="../demo/anime4k-webgpu.js"></script>
-<script>
-const out=(s)=>{document.body.dataset.result=(document.body.dataset.result||'')+' | '+s;};
-(async()=>{
- try{
-  const v=document.getElementById('v');
-  await new Promise(r=>v.addEventListener('loadeddata',r,{once:true}));
-  v.currentTime=1; await new Promise(r=>v.addEventListener('seeked',r,{once:true}));
-  const up=new Anime4KWebGPU(v,document.getElementById('c'),{fps:0,mode:'auto',clampHighlights:false,backpressure:false});
-  await up.init(); up.start(); await new Promise(r=>setTimeout(r,300)); up.renderFrame();
-  const s1=up.getStats(); out('AUTO='+s1.mode+' scale='+s1.scale+' canvas='+up.canvas.width+'x'+up.canvas.height);
-  up.setMode('upscale2x'); up.renderFrame(); await new Promise(r=>setTimeout(r,100)); up.renderFrame();
-  const s2=up.getStats(); out('2X='+s2.mode+' scale='+s2.scale+' canvas='+up.canvas.width+'x'+up.canvas.height);
-  up.setClampHighlights(true); up.renderFrame(); await new Promise(r=>setTimeout(r,100)); up.renderFrame();
-  const s3=up.getStats(); out('CLAMP mode='+s3.mode+' canvas='+up.canvas.width+'x'+up.canvas.height);
- }catch(e){out('ERR '+(e.message||e));}
-})();
-</script></body>
+<script type="module" src="../src/test/auto-mode.ts"></script>
+</body>
