@@ -1,0 +1,15 @@
+{
+  "name": "anime4k-webgpu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "WebGPU real-time Anime4K video upscaling/restoration browser extension",
+  "scripts": {
+    "serve": "python3 -m http.server 8765 --directory .",
+    "serve:demo": "python3 -m http.server 8765 --directory demo",
+    "sync:demo": "node scripts/sync-demo.mjs",
+    "lint": "node --check extension/anime4k-webgpu.js && node --check extension/content.js && node --check demo/demo.js && node --check demo/color-test.js",
+    "extract:weights": "python3 tools/extract_anime4k_weights.py --glsl research/anime4k-shaders --out research/weights.json",
+    "validate:wgsl": "bash tools/validate-wgsl.sh"
+  }
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anime4K WebGPU Demo</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; background: #0b0d12; color: #e8eaf0; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    header { padding: 18px 22px; display: flex; gap: 12px; align-items: center; border-bottom: 1px solid #232838; }
+    h1 { font-size: 16px; font-weight: 650; margin: 0; letter-spacing: .2px; }
+    .tag { font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #1a2133; color: #8ea0c8; }
+    main { max-width: 1200px; margin: 0 auto; padding: 22px; }
+    .wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+    video, canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    canvas { pointer-events: none; visibility: hidden; }
+    .bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+    button { appearance: none; border: 1px solid #33405e; background: #182038; color: #e8eaf0; padding: 8px 14px; border-radius: 8px; font: inherit; cursor: pointer; }
+    button:hover { background: #202b48; }
+    button.primary { background: #4b6cff; border-color: #4b6cff; }
+    button.primary:hover { background: #5b79ff; }
+    #status { color: #9aa7c2; font-size: 13px; }
+    code { background: #141a2a; padding: 1px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Anime4K WebGPU</h1>
+    <span class="tag">Clamp → Restore S → Upscale x2 S</span>
+  </header>
+  <main>
+    <div class="wrap">
+      <video id="v" src="sample.mp4" muted loop playsinline controls></video>
+      <canvas id="c"></canvas>
+    </div>
+    <div class="bar">
+      <button id="start" class="primary">开启 Anime4K</button>
+      <button id="stop">关闭</button>
+      <span id="status">等待启动</span>
+    </div>
+    <p style="color:#7f8ba5;font-size:12px">请通过 <code>python3 -m http.server 8765</code> 后访问 <code>http://127.0.0.1:8765/</code>；<code>file://</code> 下浏览器会阻止 WebGPU 读取视频帧。如果看到 <code>WebGPU 不可用</code>，请用 Chrome 113+ / Edge 113+，并确认 <code>chrome://gpu</code> 中 WebGPU 为 enabled。</p>
+  </main>
+  <script src="anime4k-data.js"></script>
+  <script src="anime4k-webgpu.js"></script>
+  <script src="demo.js"></script>
+</body>
+</html>

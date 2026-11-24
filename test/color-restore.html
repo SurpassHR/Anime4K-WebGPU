@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><body style="background:#111;color:#fff">
+<video id="v" src="../demo/color.mp4" muted playsinline style="width:640px"></video>
+<canvas id="c"></canvas>
+<script src="../demo/anime4k-data.js"></script>
+<script src="../demo/anime4k-webgpu.js"></script>
+<script>
+const out=(s)=>{document.body.dataset.result=(document.body.dataset.result||'')+' | '+s;};
+(async()=>{
+ try{
+  const v=document.getElementById('v');
+  await new Promise((res,rej)=>{v.addEventListener('loadeddata',res,{once:true});v.addEventListener('error',()=>rej(new Error('video error')),{once:true});});
+  v.currentTime=1; await new Promise(r=>v.addEventListener('seeked',r,{once:true}));
+  const up=new Anime4KWebGPU(v,document.getElementById('c'),{fps:0,mode:'restore',clampHighlights:false,backpressure:false});
+  await up.init(); up.start(); await new Promise(r=>setTimeout(r,300)); up.renderFrame();
+  const W=up.canvas.width,H=up.canvas.height;
+  const a=document.createElement('canvas');a.width=W;a.height=H;const ac=a.getContext('2d');ac.drawImage(up.canvas,0,0);const ad=ac.getImageData(0,0,W,H).data;
+  const b=document.createElement('canvas');b.width=W;b.height=H;const bc=b.getContext('2d');bc.drawImage(v,0,0,W,H);const bd=bc.getImageData(0,0,W,H).data;
+  const pts=[[100,100],[300,100],[500,100],[700,100],[900,100],[1100,100],[100,360],[300,360],[500,360],[700,360],[900,360],[1100,360],[100,620],[300,620],[500,620],[700,620],[900,620],[1100,620]];
+  let maxd=0,sum=0,n=0;
+  for(const [x,y] of pts){const i=(y*W+x)*4;const ds=[Math.abs(ad[i]-bd[i]),Math.abs(ad[i+1]-bd[i+1]),Math.abs(ad[i+2]-bd[i+2])];maxd=Math.max(maxd,...ds);sum+=ds[0]+ds[1]+ds[2];n+=3;const s=`${x},${y}: src(${bd[i]},${bd[i+1]},${bd[i+2]}) out(${ad[i]},${ad[i+1]},${ad[i+2]}) d(${ds.join(',')})`;out(s);}
+  out('MAXD='+maxd+' MEAND='+(sum/n).toFixed(2));
+ }catch(e){out('ERR '+(e.message||e));}
+})();
+</script></body>
